@@ -1,5 +1,5 @@
 <template>
-  <div :style="backgroundColorStyle" class="container">
+  <div :style="backgroundColor" class="container">
     <the-header></the-header>
     <search-bar></search-bar>
     <user-profile></user-profile>
@@ -24,9 +24,9 @@ export default {
     ...mapState({
       theme: state => state.theme
     }),
-    backgroundColorStyle() {
+    backgroundColor() {
       return {
-        backgroundColor: colors[`color-main-bg-${this.theme}`]
+        backgroundColor: colors[`main-bg-${this.theme}`]
       };
     }
   }
