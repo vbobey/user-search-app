@@ -1,1 +1,20 @@
+$color-blue: #0079ff;
+$color-white: #ffffff;
 
+// LIGHT MODE
+$color-main-bg-light: #f6f8ff;
+$color-content-bg-light: #fefefe;
+$color-accent-light: #697c9a;
+$color-title-light: #2b3442;
+$color-text-light: #4b6a9b;
+
+// DARK MODE
+$color-main-bg-dark: #141d2f;
+$color-content-bg-dark: #1e2a47;
+$color-accent-dark: $color-white;
+$color-title-dark: $color-white;
+$color-text-dark: $color-white;
+
+:export {
+  color-main-bg-light: $color-main-bg-light;
+}

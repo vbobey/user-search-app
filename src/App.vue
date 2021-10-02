@@ -1,27 +1,40 @@
 <template>
-  <the-header></the-header>
-  <search-bar></search-bar>
-  <user-profile></user-profile>
+  <div :style="backgroundColorStyle" class="container">
+    <the-header></the-header>
+    <search-bar></search-bar>
+    <user-profile></user-profile>
+  </div>
 </template>
 
 <script>
-import TheHeader from "./components/TheHeader.vue";
-import SearchBar from "./components/SearchBar.vue";
-import UserProfile from "./components/UserProfile.vue";
+import TheHeader from './components/TheHeader.vue';
+import SearchBar from './components/SearchBar.vue';
+import UserProfile from './components/UserProfile.vue';
+import { mapState } from 'vuex';
+import colors from './assets/css/colors.scss';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     TheHeader,
     SearchBar,
-    UserProfile,
+    UserProfile
   },
+  computed: {
+    ...mapState({
+      theme: state => state.theme
+    }),
+    backgroundColorStyle() {
+      return {
+        backgroundColor: colors[`color-main-bg-${this.theme}`]
+      };
+    }
+  }
 };
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
-@import "./assets/css/colors.scss";
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 
 *,
 *::before,
@@ -33,10 +46,15 @@ export default {
 
 html {
   font-size: 62.5%;
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
 }
 
 body {
   box-sizing: border-box;
+}
+
+.container {
+  height: 100vh;
+  padding: 14.4rem 35.5rem 0 35.5rem;
 }
 </style>

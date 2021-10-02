@@ -14,4 +14,10 @@ export default {};
   display: flex;
   justify-content: space-between;
 }
+
+h1 {
+  font-weight: bold;
+  font-size: 2.6rem;
+  line-height: 3.9rem;
+}
 </style>
