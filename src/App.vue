@@ -36,6 +36,10 @@ export default {
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 
+:root {
+  --main-text-color: brown;
+}
+
 *,
 *::before,
 *::after {

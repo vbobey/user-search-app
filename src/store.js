@@ -10,6 +10,9 @@ const store = createStore({
   mutations: {
     setUser(state, user) {
       state.user = user;
+    },
+    toggleTheme(state) {
+      state.theme = state.theme === 'light' ? 'dark' : 'light';
     }
   },
   actions: {
@@ -17,6 +20,9 @@ const store = createStore({
       const response = await fetch(`https://api.github.com/users/${username}`);
       const responseData = await response.json();
       context.commit('setUser', responseData);
+    },
+    toggleTheme(context) {
+      context.commit('toggleTheme');
     }
   }
 });
