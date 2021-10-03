@@ -1,5 +1,5 @@
 <template>
-  <div :style="backgroundColor" class="container">
+  <div class="container">
     <the-header></the-header>
     <search-bar></search-bar>
     <user-profile></user-profile>
@@ -11,7 +11,6 @@ import TheHeader from './components/TheHeader.vue';
 import SearchBar from './components/SearchBar.vue';
 import UserProfile from './components/UserProfile.vue';
 import { mapState } from 'vuex';
-import colors from './assets/css/colors.scss';
 
 export default {
   name: 'App',
@@ -23,11 +22,23 @@ export default {
   computed: {
     ...mapState({
       theme: state => state.theme
-    }),
-    backgroundColor() {
-      return {
-        backgroundColor: colors[`main-bg-${this.theme}`]
-      };
+    })
+  },
+  created() {
+    const theme = localStorage.getItem('theme') ?? 'light';
+    this.$store.dispatch('setTheme', theme);
+    this.setTheme();
+  },
+  watch: {
+    theme() {
+      this.setTheme();
+    }
+  },
+  methods: {
+    setTheme() {
+      const rootElement = document.documentElement;
+      rootElement.setAttribute('theme', this.theme);
+      localStorage.setItem('theme', this.theme);
     }
   }
 };
@@ -35,10 +46,7 @@ export default {
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
-
-:root {
-  --main-text-color: brown;
-}
+@import './assets/css/colors.scss';
 
 *,
 *::before,
@@ -60,5 +68,6 @@ body {
 .container {
   height: 100vh;
   padding: 14.4rem 35.5rem 0 35.5rem;
+  background-color: var(--color-main-background);
 }
 </style>
