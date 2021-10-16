@@ -49,16 +49,34 @@ form {
   padding: 2rem 1rem;
   display: flex;
   align-items: center;
+  box-shadow: 0 1.6rem 3rem -1rem rgba(70, 96, 187, 0.2);
+}
+
+img {
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-left: 1.4rem;
 }
 
 input {
   width: 100%;
-  color: var(--color-text);
+  color: var(--color-text-hover);
   font-size: 1.8rem;
   font-family: inherit;
+  line-height: 2.5rem;
   border: none;
   background-color: transparent;
   padding: 0 2rem;
+
+  &::placeholder {
+    color: var(--color-text);
+  }
+
+  &:focus,
+  &:active {
+    outline: none;
+    caret-color: var(--color-blue);
+  }
 }
 
 button {
@@ -68,9 +86,28 @@ button {
   font-size: 1.6rem;
   font-family: inherit;
   font-weight: 700;
+  line-height: 2.4rem;
   background-color: var(--color-blue);
   border: none;
   border-radius: 1rem;
   margin-left: auto;
+  transition: all 0.2s;
+
+  &:hover:enabled,
+  &:active:enabled {
+    filter: opacity(0.7);
+  }
+
+  &:hover:enabled {
+    transform: translateY(-2px);
+  }
+
+  &:active:enabled {
+    transform: translateY(0px);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 </style>

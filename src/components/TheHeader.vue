@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <h1 :style="headingColor">devfinder</h1>
+    <h1>devfinder</h1>
     <button @click="toggleTheme">
       {{ buttonText }}
       <img :src="buttonImgSrc" alt="Icon to change theme" :style="imgColor" />
@@ -52,6 +52,7 @@ h1 {
   font-size: 2.6rem;
   line-height: 3.8rem;
   color: var(--color-title);
+  margin-bottom: 2.5rem;
 }
 
 button {
@@ -64,6 +65,7 @@ button {
   text-transform: uppercase;
   border: none;
   padding: 1rem 0;
+  align-self: flex-start;
   display: flex;
   align-items: center;
   background-color: transparent;

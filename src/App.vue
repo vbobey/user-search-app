@@ -63,11 +63,18 @@ html {
 
 body {
   box-sizing: border-box;
+  background-color: var(--color-main-background);
+}
+
+#app {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  margin-top: 14rem;
 }
 
 .container {
-  height: 100vh;
-  padding: 14.4rem 35.5rem 0 35.5rem;
-  background-color: var(--color-main-background);
+  width: 100%;
+  max-width: 100rem;
 }
 </style>
