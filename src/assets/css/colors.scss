@@ -1,5 +1,6 @@
 :root {
   --color-blue: #0079ff;
+  --color-blue-light: #60abff;
   --color-white: #ffffff;
 
   // LIGHT MODE
@@ -9,6 +10,8 @@
   --color-title: #2b3442;
   --color-text: #4b6a9b;
   --color-text-hover: #222731;
+  --color-text-input: #222731;
+  --color-text-placeholder: #4b6a9b;
 }
 
 [theme='dark'] {
@@ -19,4 +22,6 @@
   --color-title: var(--color-white);
   --color-text: var(--color-white);
   --color-text-hover: #90a4d4;
+  --color-text-input: var(--color-white);
+  --color-text-placeholder: var(--color-white);
 }

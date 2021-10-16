@@ -60,7 +60,7 @@ img {
 
 input {
   width: 100%;
-  color: var(--color-text-hover);
+  color: var(--color-text-input);
   font-size: 1.8rem;
   font-family: inherit;
   line-height: 2.5rem;
@@ -69,7 +69,7 @@ input {
   padding: 0 2rem;
 
   &::placeholder {
-    color: var(--color-text);
+    color: var(--color-text-placeholder);
   }
 
   &:focus,
@@ -95,7 +95,7 @@ button {
 
   &:hover:enabled,
   &:active:enabled {
-    filter: opacity(0.7);
+    background-color: var(--color-blue-light);
   }
 
   &:hover:enabled {
