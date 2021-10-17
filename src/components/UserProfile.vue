@@ -29,7 +29,59 @@
         <h2>{{ user.following }}</h2>
       </div>
     </div>
-    <div v-if="user" class="user-profile__socials">Socials</div>
+    <div v-if="user" class="user-profile__socials">
+      <div
+        class="user-profile__icon"
+        :class="{ 'user-profile__icon--unavailable': !user.location }"
+      >
+        <img src="../assets/svg/icon-location.svg" alt="Location pin icon" />
+      </div>
+      <div
+        class="user-profile__text"
+        :class="{ 'user-profile__text--unavailable': !user.location }"
+      >
+        {{ user.location || 'Not Available' }}
+      </div>
+      <div
+        class="user-profile__icon"
+        :class="{ 'user-profile__icon--unavailable': !user.twitter_username }"
+      >
+        <img src="../assets/svg/icon-twitter.svg" alt="Location pin icon" />
+      </div>
+      <div
+        class="user-profile__text"
+        :class="{ 'user-profile__icon--unavailable': !user.twitter_username }"
+      >
+        {{ user.twitter_username || 'Not Available' }}
+      </div>
+      <div
+        class="user-profile__icon"
+        :class="{ 'user-profile__icon--unavailable': !user.blog }"
+      >
+        <img src="../assets/svg/icon-website.svg" alt="Location pin icon" />
+      </div>
+      <div
+        class="user-profile__text"
+        :class="{ 'user-profile__icon--unavailable': !user.blog }"
+      >
+        <a v-if="user.blog" :href="user.blog" class="user-profile__text">
+          {{ user.blog }}
+        </a>
+        <span v-else>Not Available</span>
+      </div>
+      <div
+        class="user-profile__icon"
+        :class="{ 'user-profile__icon--unavailable': !user.company }"
+      >
+        <img src="../assets/svg/icon-company.svg" alt="Location pin icon" />
+      </div>
+      <div
+        class="user-profile__text"
+        :class="{ 'user-profile__icon--unavailable': !user.company }"
+      >
+        {{ user.company || 'Not Available' }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -145,6 +197,33 @@ h4 {
 
   &__socials {
     grid-column: 2 / -1;
+    color: var(--color-text);
+
+    display: grid;
+    grid-template-columns: 3.6rem 1.5fr 3.6rem 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    row-gap: 2rem;
+  }
+
+  &__text {
+    font-size: 1.5rem;
+    line-height: 2.2rem;
+
+    &--unavailable {
+      opacity: 0.5;
+    }
+
+    a {
+      color: var(--color-text);
+
+      &:not(:hover) {
+        text-decoration: none;
+      }
+    }
+  }
+
+  &__icon--unavailable {
+    opacity: 0.5;
   }
 }
 </style>
