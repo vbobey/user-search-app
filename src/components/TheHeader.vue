@@ -45,14 +45,10 @@ export default {
 .header {
   display: flex;
   justify-content: space-between;
-}
 
-h1 {
-  font-weight: bold;
-  font-size: 2.6rem;
-  line-height: 3.8rem;
-  color: var(--color-title);
-  margin-bottom: 2.5rem;
+  h1 {
+    margin-bottom: 2.5rem;
+  }
 }
 
 button {

@@ -3,7 +3,7 @@ import { createStore } from 'vuex';
 const store = createStore({
   state() {
     return {
-      user: {},
+      user: null,
       theme: 'light'
     };
   },
@@ -21,6 +21,12 @@ const store = createStore({
   actions: {
     async getUser(context, username) {
       const response = await fetch(`https://api.github.com/users/${username}`);
+
+      if (!response.ok) {
+        context.commit('setUser', null);
+        throw new Error('User not found');
+      }
+
       const responseData = await response.json();
       context.commit('setUser', responseData);
     },

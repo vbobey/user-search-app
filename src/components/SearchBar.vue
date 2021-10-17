@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="searchUser">
+  <form @submit.prevent="searchUser" :style="boxShadowStyle">
     <img
       src="../assets/svg/icon-search.svg"
       alt="Magnifying Glass Search Icon"
@@ -10,31 +10,44 @@
       type="text"
       placeholder="Search GitHub username..."
     />
-    <button :disabled="!username" type="submit">
+    <div v-if="error" class="error">No Results</div>
+    <button :disabled="!username || isLoading" type="submit">
       Search
     </button>
   </form>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
       username: '',
       isLoading: false,
-      error: ''
+      error: false
     };
+  },
+  computed: {
+    ...mapState({
+      theme: state => state.theme
+    }),
+    boxShadowStyle() {
+      return this.theme === 'light'
+        ? { 'box-shadow': '0 1.6rem 3rem -1rem rgba(70, 96, 187, 0.2)' }
+        : {};
+    }
   },
   methods: {
     async searchUser() {
       this.isLoading = true;
       try {
         await this.$store.dispatch('getUser', this.username);
+        this.error = false;
       } catch (error) {
-        this.error =
-          error.message || `Could not fetch user profile for ${this.username}.`;
+        this.error = true;
+      } finally {
+        this.isLoading = false;
       }
-      this.isLoading = false;
     }
   }
 };
@@ -49,7 +62,14 @@ form {
   padding: 2rem 1rem;
   display: flex;
   align-items: center;
-  box-shadow: 0 1.6rem 3rem -1rem rgba(70, 96, 187, 0.2);
+
+  .error {
+    width: 13rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 2.2rem;
+    color: var(--color-red);
+  }
 }
 
 img {
@@ -59,7 +79,7 @@ img {
 }
 
 input {
-  width: 100%;
+  flex-grow: 1;
   color: var(--color-text-input);
   font-size: 1.8rem;
   font-family: inherit;
@@ -91,19 +111,11 @@ button {
   border: none;
   border-radius: 1rem;
   margin-left: auto;
-  transition: all 0.2s;
+  transition: background-color 0.2s;
 
   &:hover:enabled,
   &:active:enabled {
     background-color: var(--color-blue-light);
-  }
-
-  &:hover:enabled {
-    transform: translateY(-2px);
-  }
-
-  &:active:enabled {
-    transform: translateY(0px);
   }
 
   &:disabled {
