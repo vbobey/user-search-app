@@ -34,7 +34,11 @@
         class="user-profile__icon"
         :class="{ 'user-profile__icon--unavailable': !user.location }"
       >
-        <img src="../assets/svg/icon-location.svg" alt="Location pin icon" />
+        <img
+          src="../assets/svg/icon-location.svg"
+          alt="Location pin icon"
+          :class="{ 'dark-mode': theme === 'dark' }"
+        />
       </div>
       <div
         class="user-profile__text"
@@ -46,7 +50,11 @@
         class="user-profile__icon"
         :class="{ 'user-profile__icon--unavailable': !user.twitter_username }"
       >
-        <img src="../assets/svg/icon-twitter.svg" alt="Location pin icon" />
+        <img
+          src="../assets/svg/icon-twitter.svg"
+          alt="Location pin icon"
+          :class="{ 'dark-mode': theme === 'dark' }"
+        />
       </div>
       <div
         class="user-profile__text"
@@ -58,7 +66,11 @@
         class="user-profile__icon"
         :class="{ 'user-profile__icon--unavailable': !user.blog }"
       >
-        <img src="../assets/svg/icon-website.svg" alt="Location pin icon" />
+        <img
+          src="../assets/svg/icon-website.svg"
+          alt="Location pin icon"
+          :class="{ 'dark-mode': theme === 'dark' }"
+        />
       </div>
       <div
         class="user-profile__text"
@@ -73,7 +85,11 @@
         class="user-profile__icon"
         :class="{ 'user-profile__icon--unavailable': !user.company }"
       >
-        <img src="../assets/svg/icon-company.svg" alt="Location pin icon" />
+        <img
+          src="../assets/svg/icon-company.svg"
+          alt="Location pin icon"
+          :class="{ 'dark-mode': theme === 'dark' }"
+        />
       </div>
       <div
         class="user-profile__text"
@@ -222,8 +238,14 @@ h4 {
     }
   }
 
-  &__icon--unavailable {
-    opacity: 0.5;
+  &__icon {
+    &--unavailable {
+      opacity: 0.5;
+    }
+
+    img.dark-mode {
+      filter: saturate(0) brightness(3);
+    }
   }
 }
 </style>
