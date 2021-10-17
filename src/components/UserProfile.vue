@@ -15,7 +15,20 @@
         {{ user.bio || 'This profile has no bio' }}
       </div>
     </div>
-    <div v-if="user" class="user-profile__stats">Stats</div>
+    <div v-if="user" class="user-profile__stats">
+      <div class="user-profile__stats-cell">
+        <h4>Repos</h4>
+        <h2>{{ user.public_repos }}</h2>
+      </div>
+      <div class="user-profile__stats-cell">
+        <h4>Followers</h4>
+        <h2>{{ user.followers }}</h2>
+      </div>
+      <div class="user-profile__stats-cell">
+        <h4>Following</h4>
+        <h2>{{ user.following }}</h2>
+      </div>
+    </div>
     <div v-if="user" class="user-profile__socials">Socials</div>
   </div>
 </template>
@@ -46,6 +59,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+h2 {
+  font-weight: bold;
+  font-size: 2.2rem;
+  line-height: 3.3rem;
+  color: var(--color-title);
+}
+
 h3 {
   font-weight: normal;
   font-size: 1.6rem;
@@ -118,6 +138,9 @@ h4 {
     grid-column: 2 / -1;
     background-color: var(--color-main-background);
     border-radius: 1rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 8.3rem 1.5rem 3.2rem;
   }
 
   &__socials {
