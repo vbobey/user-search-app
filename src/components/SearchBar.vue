@@ -9,6 +9,7 @@
       v-model.trim="username"
       type="text"
       placeholder="Search GitHub username..."
+      autocomplete="off"
     />
     <div v-if="error" class="error">No Results</div>
     <button :disabled="!username || isLoading" type="submit">

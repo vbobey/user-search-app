@@ -1,13 +1,13 @@
 <template>
-  <div class="user-profile" :style="boxShadowStyle">
-    <div v-if="user" class="user-profile__avatar">
+  <div v-if="user" class="user-profile" :style="boxShadowStyle">
+    <div class="user-profile__avatar">
       <img
         v-if="user.avatar_url"
         :src="user.avatar_url"
         alt="The user's avatar"
       />
     </div>
-    <div v-if="user" class="user-profile__info">
+    <div class="user-profile__info">
       <h1 class="user-profile__name">{{ user.name }}</h1>
       <div class="user-profile__joined">{{ dateJoined }}</div>
       <h3 class="user-profile__username">@{{ user.login }}</h3>
@@ -15,7 +15,7 @@
         {{ user.bio || 'This profile has no bio' }}
       </div>
     </div>
-    <div v-if="user" class="user-profile__stats">
+    <div class="user-profile__stats">
       <div class="user-profile__stats-cell">
         <h4>Repos</h4>
         <h2>{{ user.public_repos }}</h2>
@@ -29,7 +29,7 @@
         <h2>{{ user.following }}</h2>
       </div>
     </div>
-    <div v-if="user" class="user-profile__socials">
+    <div class="user-profile__socials">
       <div
         class="user-profile__icon"
         :class="{ 'user-profile__icon--unavailable': !user.location }"
@@ -103,6 +103,8 @@
 
 <script>
 import { mapState } from 'vuex';
+import gsap from 'gsap';
+
 export default {
   computed: {
     ...mapState({
@@ -121,6 +123,19 @@ export default {
       return this.theme === 'light'
         ? { 'box-shadow': '0 1.6rem 3rem -1rem rgba(70, 96, 187, 0.2)' }
         : {};
+    }
+  },
+  watch: {
+    user(newValue) {
+      if (newValue) {
+        this.$nextTick(() => {
+          const tl = gsap.timeline();
+          tl.from('.user-profile', {
+            duration: 1,
+            opacity: 0
+          });
+        });
+      }
     }
   }
 };
