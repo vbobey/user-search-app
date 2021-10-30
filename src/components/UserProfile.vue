@@ -99,6 +99,7 @@
       </div>
     </div>
   </div>
+  <div v-else class="user-placeholder" :style="boxShadowStyle"></div>
 </template>
 
 <script>
@@ -129,11 +130,15 @@ export default {
     user(newValue) {
       if (newValue) {
         this.$nextTick(() => {
-          const tl = gsap.timeline();
-          tl.from('.user-profile', {
-            duration: 1,
-            opacity: 0
-          });
+          gsap.fromTo(
+            '.user-profile > div',
+            { opacity: 0 },
+            {
+              opacity: 1,
+              duration: 1,
+              ease: 'power1.inOut'
+            }
+          );
         });
       }
     }
@@ -163,7 +168,8 @@ h4 {
   color: var(--color-text);
 }
 
-.user-profile {
+.user-profile,
+.user-placeholder {
   height: 42rem;
   background: var(--color-content-background);
   border-radius: 15px;
