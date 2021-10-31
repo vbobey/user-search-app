@@ -1,9 +1,20 @@
-$mobile: 36em; // 576px
 $tablet: 48em; // 768px
 $desktop: 75em; // 1200px
 
+@mixin media-xs {
+  @media (max-width: 22em) {
+    @content;
+  }
+}
+
 @mixin media-sm {
-  @media (max-width: #{$tablet}) {
+  @media (max-width: #{$tablet}) and (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin media-sm-land {
+  @media (max-width: 62.5em) and (orientation: landscape) {
     @content;
   }
 }

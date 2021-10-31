@@ -78,6 +78,11 @@ body {
   @include media-sm {
     margin-top: 0;
   }
+
+  @include media-sm-land {
+    margin-top: 0;
+    padding: 3rem 2rem;
+  }
 }
 
 .container {
@@ -91,6 +96,10 @@ body {
   @include media-sm {
     padding: 3rem 0;
     max-width: 32.7rem;
+  }
+
+  @include media-xs {
+    max-width: 90%;
   }
 }
 </style>
