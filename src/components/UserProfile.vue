@@ -181,6 +181,12 @@ h4 {
   grid-template-rows: repeat(3, 1fr);
   gap: 3rem;
 
+  @include media-md {
+    height: 48rem;
+    grid-template-rows: repeat(4, 1fr);
+    padding: 4rem;
+  }
+
   &__avatar {
     img {
       width: 12rem;
@@ -188,18 +194,38 @@ h4 {
       shape-outside: circle(50% at 50% 50%);
       clip-path: circle(50% at 50% 50%);
     }
+
+    @include media-md {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+    }
   }
 
   &__info {
     grid-column: 2 / -1;
 
+    // info sub-grid
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
+
+    @include media-md {
+      grid-column: 1 / -1;
+      grid-row: 1 / 3;
+
+      // info sub-grid
+      grid-template-columns: 12rem 1fr;
+      grid-template-rows: repeat(3, 4rem) auto;
+      grid-column-gap: 2.4rem;
+    }
   }
 
   &__name {
     grid-column: 1 / 2;
+
+    @include media-md {
+      grid-column: 2 / -1;
+    }
   }
 
   &__joined {
@@ -209,10 +235,19 @@ h4 {
     font-size: 1.5rem;
     line-height: 2.2rem;
     color: var(--color-accent);
+
+    @include media-md {
+      grid-column: 2 / -1;
+      justify-self: start;
+    }
   }
 
   &__username {
     grid-column: 1 / 2;
+
+    @include media-md {
+      grid-column: 2 / -1;
+    }
   }
 
   &__bio {
@@ -221,6 +256,11 @@ h4 {
     line-height: 2.5rem;
     color: var(--color-text);
     opacity: 0.75;
+
+    @include media-md {
+      grid-column: 1 / -1;
+      padding: 2.4rem 0;
+    }
   }
 
   &__stats {
@@ -230,6 +270,10 @@ h4 {
     display: flex;
     justify-content: space-between;
     padding: 1.5rem 8.3rem 1.5rem 3.2rem;
+
+    @include media-md {
+      grid-column: 1 / -1;
+    }
   }
 
   &__socials {
@@ -240,6 +284,10 @@ h4 {
     grid-template-columns: 3.6rem 1.5fr 3.6rem 1fr;
     grid-template-rows: repeat(2, 1fr);
     row-gap: 2rem;
+
+    @include media-md {
+      grid-column: 1 / -1;
+    }
   }
 
   &__text {

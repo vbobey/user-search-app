@@ -46,7 +46,7 @@ export default {
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
-@import './assets/css/colors.scss';
+@import './assets/scss/colors.scss';
 
 *,
 *::before,
@@ -67,15 +67,26 @@ body {
 }
 
 #app {
-  height: 100vh;
   display: flex;
   justify-content: center;
   margin-top: 14rem;
+
+  @include media-md-land {
+    margin-top: 8rem;
+  }
 }
 
 .container {
   width: 100%;
   max-width: 73rem;
+
+  @include media-md {
+    max-width: 57.3rem;
+  }
+
+  @include media-sm {
+    padding: 2.4rem;
+  }
 }
 
 h1 {
