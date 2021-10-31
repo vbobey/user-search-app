@@ -1,4 +1,4 @@
-# Frontend Mentor - GitHub user search app solution
+#GitHub User Search App
 
 This is my solution to the [GitHub User Search App](https://www.frontendmentor.io/challenges/github-user-search-app-Q09YOgaH6) challenge on Frontend Mentor.
 
@@ -63,5 +63,3 @@ Victoria Bobey
 
 - Github - [@vbobey](https://github.com/vbobey)
 - Frontend Mentor - [@vbobey](https://www.frontendmentor.io/profile/vbobey)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**

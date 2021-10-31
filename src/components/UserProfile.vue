@@ -8,10 +8,13 @@
       />
     </div>
     <div class="user-profile__info">
-      <h1 class="user-profile__name">{{ user.name }}</h1>
+      <h1 class="user-profile__name">{{ user.name || user.login }}</h1>
       <div class="user-profile__username">@{{ user.login }}</div>
       <div class="user-profile__joined">{{ dateJoined }}</div>
-      <div class="user-profile__bio">
+      <div
+        class="user-profile__bio"
+        :class="{ 'user-profile__bio--empty': !user.bio }"
+      >
         {{ user.bio || 'This profile has no bio' }}
       </div>
     </div>
@@ -57,10 +60,18 @@
         />
       </div>
       <div
-        class="user-profile__text"
+        class="user-profile__text user-profile__text--short"
         :class="{ 'user-profile__icon--unavailable': !user.twitter_username }"
       >
-        {{ user.twitter_username || 'Not Available' }}
+        <a
+          v-if="user.twitter_username"
+          :href="twitterLink"
+          class="user-profile__text"
+          target="_blank"
+        >
+          {{ user.twitter_username }}
+        </a>
+        <span v-else>Not Available</span>
       </div>
       <div
         class="user-profile__icon blog"
@@ -76,7 +87,12 @@
         class="user-profile__text blog"
         :class="{ 'user-profile__icon--unavailable': !user.blog }"
       >
-        <a v-if="user.blog" :href="user.blog" class="user-profile__text">
+        <a
+          v-if="user.blog"
+          :href="user.blog"
+          class="user-profile__text"
+          target="_blank"
+        >
           {{ user.blog }}
         </a>
         <span v-else>Not Available</span>
@@ -95,7 +111,15 @@
         class="user-profile__text"
         :class="{ 'user-profile__icon--unavailable': !user.company }"
       >
-        {{ user.company || 'Not Available' }}
+        <a
+          v-if="user.company"
+          :href="companyLink"
+          class="user-profile__text user-profile__text--short"
+          target="_blank"
+        >
+          {{ user.company }}
+        </a>
+        <span v-else>Not Available</span>
       </div>
     </div>
   </div>
@@ -124,6 +148,19 @@ export default {
       return this.theme === 'light'
         ? { 'box-shadow': '0 1.6rem 3rem -1rem rgba(70, 96, 187, 0.2)' }
         : {};
+    },
+    twitterLink() {
+      return this.user?.twitter_username
+        ? `https://twitter.com/${this.user.twitter_username}`
+        : '';
+    },
+    companyLink() {
+      if (this.user?.company[0] === '@') {
+        const company = this.user?.company.substring(1);
+        return `https://github.com/${company}`;
+      } else {
+        return '';
+      }
     }
   },
   watch: {
@@ -135,7 +172,7 @@ export default {
             { opacity: 0 },
             {
               opacity: 1,
-              duration: 1.2,
+              duration: 1,
               ease: 'power1.inOut'
             }
           );
@@ -234,7 +271,7 @@ h1 {
     // info sub-grid
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 3.5rem) 1fr;
 
     @include media-md {
       grid-column: 1 / -1;
@@ -265,14 +302,16 @@ h1 {
 
   &__joined {
     grid-column: 2 / -1;
+    grid-row: 1 / 2;
     justify-self: end;
-    align-self: center;
     font-size: 1.5rem;
     line-height: 2.2rem;
     color: var(--color-accent);
+    padding-top: 0.8rem;
 
     @include media-md {
       grid-column: 2 / -1;
+      grid-row: 3 / 4;
       justify-self: start;
     }
 
@@ -300,11 +339,11 @@ h1 {
   }
 
   &__bio {
-    grid-column: 1 / 2;
+    grid-column: 1 / -1;
     font-size: 1.5rem;
     line-height: 2.5rem;
     color: var(--color-text);
-    opacity: 0.75;
+    opacity: 0.9;
 
     @include media-md {
       grid-column: 1 / -1;
@@ -314,6 +353,10 @@ h1 {
     @include media-sm {
       font-size: 1.3rem;
       line-height: 2.5rem;
+    }
+
+    &--empty {
+      opacity: 0.75;
     }
   }
 
@@ -359,8 +402,13 @@ h1 {
   }
 
   &__text {
+    display: inline-block;
+    max-width: 21rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 1.5rem;
     line-height: 2.2rem;
+    white-space: nowrap;
 
     @include media-sm {
       font-size: 1.3rem;
@@ -369,6 +417,14 @@ h1 {
 
     &--unavailable {
       opacity: 0.5;
+    }
+
+    &--short {
+      max-width: 15rem;
+
+      @include media-sm {
+        max-width: 21rem;
+      }
     }
 
     a {

@@ -28,6 +28,8 @@ export default {
     const theme = localStorage.getItem('theme') ?? 'light';
     this.$store.dispatch('setTheme', theme);
     this.setTheme();
+
+    this.$store.dispatch('getUser', 'octocat');
   },
   watch: {
     theme() {
