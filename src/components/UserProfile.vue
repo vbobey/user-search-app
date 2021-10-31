@@ -9,8 +9,8 @@
     </div>
     <div class="user-profile__info">
       <h1 class="user-profile__name">{{ user.name }}</h1>
-      <div class="user-profile__joined">{{ dateJoined }}</div>
       <h3 class="user-profile__username">@{{ user.login }}</h3>
+      <div class="user-profile__joined">{{ dateJoined }}</div>
       <div class="user-profile__bio">
         {{ user.bio || 'This profile has no bio' }}
       </div>
@@ -217,6 +217,7 @@ h4 {
       grid-template-columns: 12rem 1fr;
       grid-template-rows: repeat(3, 4rem) auto;
       grid-column-gap: 2.4rem;
+      align-items: center;
     }
   }
 
