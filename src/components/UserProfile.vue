@@ -9,7 +9,7 @@
     </div>
     <div class="user-profile__info">
       <h1 class="user-profile__name">{{ user.name }}</h1>
-      <h3 class="user-profile__username">@{{ user.login }}</h3>
+      <div class="user-profile__username">@{{ user.login }}</div>
       <div class="user-profile__joined">{{ dateJoined }}</div>
       <div class="user-profile__bio">
         {{ user.bio || 'This profile has no bio' }}
@@ -17,16 +17,16 @@
     </div>
     <div class="user-profile__stats">
       <div class="user-profile__stats-cell">
-        <h4>Repos</h4>
-        <h2>{{ user.public_repos }}</h2>
+        <div class="eyebrow">Repos</div>
+        <div class="stat">{{ user.public_repos }}</div>
       </div>
       <div class="user-profile__stats-cell">
-        <h4>Followers</h4>
-        <h2>{{ user.followers }}</h2>
+        <div class="eyebrow">Followers</div>
+        <div class="stat">{{ user.followers }}</div>
       </div>
       <div class="user-profile__stats-cell">
-        <h4>Following</h4>
-        <h2>{{ user.following }}</h2>
+        <div class="eyebrow">Following</div>
+        <div class="stat">{{ user.following }}</div>
       </div>
     </div>
     <div class="user-profile__socials">
@@ -63,7 +63,7 @@
         {{ user.twitter_username || 'Not Available' }}
       </div>
       <div
-        class="user-profile__icon"
+        class="user-profile__icon blog"
         :class="{ 'user-profile__icon--unavailable': !user.blog }"
       >
         <img
@@ -73,7 +73,7 @@
         />
       </div>
       <div
-        class="user-profile__text"
+        class="user-profile__text blog"
         :class="{ 'user-profile__icon--unavailable': !user.blog }"
       >
         <a v-if="user.blog" :href="user.blog" class="user-profile__text">
@@ -135,7 +135,7 @@ export default {
             { opacity: 0 },
             {
               opacity: 1,
-              duration: 1,
+              duration: 1.2,
               ease: 'power1.inOut'
             }
           );
@@ -147,25 +147,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h2 {
+h1 {
+  font-weight: bold;
+  font-size: 2.6rem;
+  line-height: 3.8rem;
+  color: var(--color-title);
+
+  @include media-sm {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+  }
+}
+
+.stat {
   font-weight: bold;
   font-size: 2.2rem;
   line-height: 3.3rem;
   color: var(--color-title);
+
+  @include media-sm {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+  }
 }
 
-h3 {
-  font-weight: normal;
-  font-size: 1.6rem;
-  line-height: 2.4rem;
-  color: var(--color-blue);
-}
-
-h4 {
+.eyebrow {
   font-weight: normal;
   font-size: 1.3rem;
   line-height: 2rem;
   color: var(--color-text);
+
+  @include media-sm {
+    font-size: 1.1rem;
+    line-height: 1.6rem;
+  }
 }
 
 .user-profile,
@@ -187,12 +202,24 @@ h4 {
     padding: 4rem;
   }
 
+  @include media-sm {
+    height: 51.7rem;
+    grid-template-rows: 1fr min-content 8.5rem 1fr;
+    padding: 3.2rem 2.4rem;
+    margin-top: 1.6rem;
+  }
+
   &__avatar {
     img {
       width: 12rem;
       height: 12rem;
       shape-outside: circle(50% at 50% 50%);
       clip-path: circle(50% at 50% 50%);
+
+      @include media-sm {
+        width: 7rem;
+        height: 7rem;
+      }
     }
 
     @include media-md {
@@ -219,6 +246,13 @@ h4 {
       grid-column-gap: 2.4rem;
       align-items: center;
     }
+
+    @include media-sm {
+      // info sub-grid
+      grid-template-columns: 7rem 1fr;
+      grid-template-rows: repeat(3, 2.33rem) auto;
+      grid-column-gap: 1.9rem;
+    }
   }
 
   &__name {
@@ -241,10 +275,24 @@ h4 {
       grid-column: 2 / -1;
       justify-self: start;
     }
+
+    @include media-sm {
+      font-size: 1.3rem;
+      line-height: 1.9rem;
+    }
   }
 
   &__username {
+    font-weight: normal;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color: var(--color-blue);
     grid-column: 1 / 2;
+
+    @include media-sm {
+      font-size: 1.3rem;
+      line-height: 1.9rem;
+    }
 
     @include media-md {
       grid-column: 2 / -1;
@@ -262,6 +310,11 @@ h4 {
       grid-column: 1 / -1;
       padding: 2.4rem 0;
     }
+
+    @include media-sm {
+      font-size: 1.3rem;
+      line-height: 2.5rem;
+    }
   }
 
   &__stats {
@@ -274,6 +327,15 @@ h4 {
 
     @include media-md {
       grid-column: 1 / -1;
+      padding: 1.8rem 2.4rem;
+    }
+
+    @include media-sm {
+      text-align: center;
+    }
+
+    &-cell {
+      height: 5rem;
     }
   }
 
@@ -289,11 +351,21 @@ h4 {
     @include media-md {
       grid-column: 1 / -1;
     }
+
+    @include media-sm {
+      grid-template-columns: 3.6rem 1fr;
+      grid-template-rows: repeat(4, 1fr);
+    }
   }
 
   &__text {
     font-size: 1.5rem;
     line-height: 2.2rem;
+
+    @include media-sm {
+      font-size: 1.3rem;
+      line-height: 1.9rem;
+    }
 
     &--unavailable {
       opacity: 0.5;
@@ -315,6 +387,13 @@ h4 {
 
     img.dark-mode {
       filter: saturate(0) brightness(3);
+    }
+  }
+
+  &__text.blog,
+  &__icon.blog {
+    @include media-sm {
+      grid-row: 2 / 3;
     }
   }
 }

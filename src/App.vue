@@ -74,6 +74,10 @@ body {
   @include media-md-land {
     margin-top: 8rem;
   }
+
+  @include media-sm {
+    margin-top: 0;
+  }
 }
 
 .container {
@@ -85,14 +89,8 @@ body {
   }
 
   @include media-sm {
-    padding: 2.4rem;
+    padding: 3rem 0;
+    max-width: 32.7rem;
   }
-}
-
-h1 {
-  font-weight: bold;
-  font-size: 2.6rem;
-  line-height: 3.8rem;
-  color: var(--color-title);
 }
 </style>

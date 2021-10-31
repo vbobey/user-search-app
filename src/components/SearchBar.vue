@@ -64,6 +64,10 @@ form {
   display: flex;
   align-items: center;
 
+  @include media-sm {
+    height: 6rem;
+  }
+
   .error {
     width: 13rem;
     font-weight: 700;
@@ -77,6 +81,11 @@ img {
   width: 2.4rem;
   height: 2.4rem;
   margin-left: 1.4rem;
+
+  @include media-sm {
+    width: 2rem;
+    height: 2rem;
+  }
 }
 
 input {
@@ -88,6 +97,13 @@ input {
   border: none;
   background-color: transparent;
   padding: 0 2rem;
+
+  @include media-sm {
+    max-width: 18.4rem;
+    font-size: 1.3rem;
+    text-overflow: ellipsis;
+    padding: 0 0.7rem;
+  }
 
   &::placeholder {
     color: var(--color-text-placeholder);
@@ -113,6 +129,13 @@ button {
   border-radius: 1rem;
   margin-left: auto;
   transition: background-color 0.2s;
+
+  @include media-sm {
+    height: 4.6rem;
+    width: 8.4rem;
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+  }
 
   &:hover:enabled,
   &:active:enabled {
