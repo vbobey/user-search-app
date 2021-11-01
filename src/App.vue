@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
+  <main class="container">
     <the-header></the-header>
     <search-bar></search-bar>
     <user-profile></user-profile>
-  </div>
+  </main>
 </template>
 
 <script>

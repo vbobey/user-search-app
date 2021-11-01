@@ -128,7 +128,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import gsap from 'gsap';
+// import gsap from 'gsap';
 
 export default {
   computed: {
@@ -162,7 +162,8 @@ export default {
         return '';
       }
     }
-  },
+  }
+  /* Commenting out animation since its messing up the submission screenshot
   watch: {
     user(newValue) {
       if (newValue) {
@@ -180,6 +181,7 @@ export default {
       }
     }
   }
+  */
 };
 </script>
 
