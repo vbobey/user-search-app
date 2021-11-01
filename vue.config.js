@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/user-search-app' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/user-search-app/' : '/',
   css: {
     loaderOptions: {
       sass: {
