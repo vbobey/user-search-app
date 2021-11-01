@@ -43,7 +43,7 @@ Users should be able to:
 ### Links
 
 - [Solution](https://github.com/vbobey/user-search-app)
-- [Live Site](https://your-live-site-url.com)
+- [Live Site](https://vbobey.github.io/user-search-app/)
 
 ## My process
 
