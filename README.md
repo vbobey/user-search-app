@@ -1,4 +1,4 @@
-#GitHub User Search App
+# GitHub User Search App
 
 This is my solution to the [GitHub User Search App](https://www.frontendmentor.io/challenges/github-user-search-app-Q09YOgaH6) challenge on Frontend Mentor.
 
