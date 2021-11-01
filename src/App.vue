@@ -25,11 +25,23 @@ export default {
     })
   },
   created() {
-    const theme = localStorage.getItem('theme') ?? 'light';
-    this.$store.dispatch('setTheme', theme);
-    this.setTheme();
+    let theme;
 
+    if (
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    ) {
+      // Use darkmode if the user prefers it
+      theme = 'dark';
+    }
+
+    if (!theme) {
+      theme = localStorage.getItem('theme') ?? 'light';
+    }
+
+    this.$store.dispatch('setTheme', theme);
     this.$store.dispatch('getUser', 'octocat');
+    this.setTheme();
   },
   watch: {
     theme() {
