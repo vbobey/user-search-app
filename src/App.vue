@@ -85,6 +85,10 @@ body {
   justify-content: center;
   margin-top: 14rem;
 
+  @include media-lg {
+    margin-top: 10rem;
+  }
+
   @include media-md-land {
     margin-top: 8rem;
   }
